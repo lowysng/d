@@ -9,6 +9,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import Link from "next/link";
@@ -40,21 +41,26 @@ export const columns: ColumnDef<RevisionNote>[] = [
         id: "actions",
         cell: ({ row }) => {
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <Link href={`/${row.original.slug}`}>
-                            <DropdownMenuItem>View notes</DropdownMenuItem>
-                        </Link>
-                        {/* <DropdownMenuItem>Edit revision note</DropdownMenuItem> */}
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <Link href={`/${row.original.slug}`}>
+                    <ArrowRightIcon />
+                </Link>
             );
+            // return (
+            //     <DropdownMenu>
+            //         <DropdownMenuTrigger asChild>
+            //             <Button variant="ghost" className="h-8 w-8 p-0">
+            //                 <span className="sr-only">Open menu</span>
+            //                 <MoreHorizontal className="h-4 w-4" />
+            //             </Button>
+            //         </DropdownMenuTrigger>
+            //         <DropdownMenuContent align="end">
+            //             <Link href={`/${row.original.slug}`}>
+            //                 <DropdownMenuItem>View notes</DropdownMenuItem>
+            //             </Link>
+            //             {/* <DropdownMenuItem>Edit revision note</DropdownMenuItem> */}
+            //         </DropdownMenuContent>
+            //     </DropdownMenu>
+            // );
         },
     },
 ];
