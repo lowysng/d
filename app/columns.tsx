@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -22,12 +23,24 @@ export type RevisionNote = {
     title: string;
     content: string;
     status: "draft" | "published";
+    subject: string;
 };
 
 export const columns: ColumnDef<RevisionNote>[] = [
     {
         accessorKey: "title",
         header: "Notes",
+    },
+    {
+        accessorKey: "subject",
+        header: "Subject",
+        cell: ({ row }) => {
+            return (
+                <Badge variant="outline" className="font-normal">
+                    {row.original.subject}
+                </Badge>
+            );
+        },
     },
     // {
     //     accessorKey: "status",

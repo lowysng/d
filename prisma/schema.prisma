@@ -25,6 +25,6 @@ model RevisionNote {
   title String
   content String
   status String @default("draft")
-  // subject String
+  subject String
   // chapter String
 }

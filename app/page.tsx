@@ -1,9 +1,9 @@
 import { DataTable } from "@/components/ui/data-table";
 import { prisma } from "@/lib/db";
-import Link from "next/link";
 import { columns } from "./columns";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { RocketIcon } from "@radix-ui/react-icons";
+import { Badge } from "@/components/ui/badge";
 
 async function getRevisionNotes() {
     // await prisma.revisionNote.create({
@@ -20,11 +20,27 @@ async function getRevisionNotes() {
 async function RevisionNotes() {
     const revisionNotes = await getRevisionNotes();
     return (
-        <div className="mx-auto w-screen flex flex-col items-center py-8 mb-24">
-            <h1 className="text-lg py-4">
-                A-Level Maths Pure 1 Revision Notes
+        <div className="mx-auto w-full max-w-[800px] flex flex-col items-left py-8 mb-24">
+            <h1 className="text-lg py-4 font-semibold">
+                A-Level Revision Notes
             </h1>
-            <DataTable columns={columns} data={revisionNotes as any} />
+            <div>
+                {/* {[
+                    "Maths Pure 1",
+                    "Maths Pure 3",
+                    "Chemisty",
+                    "Physics",
+                    "Biology",
+                ].map((subject) => (
+                    <Badge
+                        variant="outline"
+                        className="mr-2 text-xs font-normal"
+                    >
+                        {subject}
+                    </Badge>
+                ))} */}
+                <DataTable columns={columns} data={revisionNotes as any} />
+            </div>
         </div>
     );
 }
