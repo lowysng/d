@@ -47,7 +47,7 @@ export function DataTable<TData, TValue>({
         <div className="w-full">
             <div className="flex items-center py-4">
                 <Input
-                    placeholder="Search"
+                    placeholder="Search notes..."
                     value={
                         (table
                             .getColumn("title")
@@ -91,7 +91,10 @@ export function DataTable<TData, TValue>({
                                     }
                                 >
                                     {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id}>
+                                        <TableCell
+                                            key={cell.id}
+                                            className="py-2 text-sm"
+                                        >
                                             {flexRender(
                                                 cell.column.columnDef.cell,
                                                 cell.getContext()

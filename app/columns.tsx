@@ -30,13 +30,26 @@ export const columns: ColumnDef<RevisionNote>[] = [
     {
         accessorKey: "title",
         header: "Notes",
+        cell: ({ row }) => {
+            return (
+                <Link
+                    href={`/${row.original.slug}`}
+                    className="hover:underline"
+                >
+                    {row.original.title}
+                </Link>
+            );
+        },
     },
     {
         accessorKey: "subject",
         header: "Subject",
         cell: ({ row }) => {
             return (
-                <Badge variant="outline" className="font-normal">
+                <Badge
+                    variant="outline"
+                    className="font-normal text-neutral-600"
+                >
                     {row.original.subject}
                 </Badge>
             );
@@ -54,26 +67,23 @@ export const columns: ColumnDef<RevisionNote>[] = [
         id: "actions",
         cell: ({ row }) => {
             return (
-                <Link href={`/${row.original.slug}`}>
-                    <ArrowRightIcon />
-                </Link>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                            <span className="sr-only">Open menu</span>
+                            <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <Link href={`/${row.original.slug}`}>
+                            <DropdownMenuItem>
+                                View revision note
+                            </DropdownMenuItem>
+                        </Link>
+                        {/* <DropdownMenuItem>Edit revision note</DropdownMenuItem> */}
+                    </DropdownMenuContent>
+                </DropdownMenu>
             );
-            // return (
-            //     <DropdownMenu>
-            //         <DropdownMenuTrigger asChild>
-            //             <Button variant="ghost" className="h-8 w-8 p-0">
-            //                 <span className="sr-only">Open menu</span>
-            //                 <MoreHorizontal className="h-4 w-4" />
-            //             </Button>
-            //         </DropdownMenuTrigger>
-            //         <DropdownMenuContent align="end">
-            //             <Link href={`/${row.original.slug}`}>
-            //                 <DropdownMenuItem>View notes</DropdownMenuItem>
-            //             </Link>
-            //             {/* <DropdownMenuItem>Edit revision note</DropdownMenuItem> */}
-            //         </DropdownMenuContent>
-            //     </DropdownMenu>
-            // );
         },
     },
 ];

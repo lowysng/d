@@ -13,7 +13,16 @@ async function getRevisionNotes() {
     //         content: "# Inequalities on Graph",
     //     },
     // });
-    const revisionNotes = await prisma.revisionNote.findMany();
+    const revisionNotes = await prisma.revisionNote.findMany({
+        orderBy: { title: "asc" },
+    });
+    // await prisma.revisionNote.update({
+    //     where: { id: "7ec7874b-132e-4cd3-a104-26c49b867ff6" },
+    //     data: {
+    //         content:
+    //             "# Expanding Brackets \n\n When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are $$ x = {-b pm sqrt{b^2-4ac} over 2a} $$",
+    //     },
+    // });
     return revisionNotes;
 }
 
@@ -21,9 +30,7 @@ async function RevisionNotes() {
     const revisionNotes = await getRevisionNotes();
     return (
         <div className="mx-auto w-full max-w-[800px] flex flex-col items-left py-8 mb-24">
-            <h1 className="text-lg py-4 font-semibold">
-                A-Level Revision Notes
-            </h1>
+            <h1 className="text-lg font-semibold">A-Level Revision Notes</h1>
             <div>
                 {/* {[
                     "Maths Pure 1",
@@ -48,14 +55,6 @@ async function RevisionNotes() {
 export default async function Home() {
     return (
         <div>
-            <Alert>
-                <RocketIcon className="h-4 w-4" />
-                <AlertTitle>Are you looking for a personal tutor?</AlertTitle>
-                <AlertDescription>
-                    We offer online 1-1 tuitions from SGD 80/hr. Send us a
-                    Whatsapp message at +6588425925 to find out more!
-                </AlertDescription>
-            </Alert>
             <RevisionNotes />
         </div>
     );
