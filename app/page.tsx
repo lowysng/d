@@ -1,28 +1,25 @@
-import { prisma } from "@/utils/db";
+import { DataTable } from "@/components/ui/data-table";
+import { prisma } from "@/lib/db";
 import Link from "next/link";
+import { columns } from "./columns";
 
 async function getRevisionNotes() {
     const revisionNotes = await prisma.revisionNote.findMany();
     return revisionNotes;
 }
 
-function RevisionNote({ id }: { id: string }) {
+async function RevisionNotes() {
+    const revisionNotes = await getRevisionNotes();
     return (
-        <div>
-            <Link href={`/${id}`}>
-                <p>Revision Note ({id})</p>
-            </Link>
+        <div className="m-auto h-screen w-screen flex flex-col justify-center items-center">
+            <h1 className="text-lg py-4">
+                ✏️ CIE A Levels Maths Pure 1 Revision Notes
+            </h1>
+            <DataTable columns={columns} data={revisionNotes as any} />
         </div>
     );
 }
 
 export default async function Home() {
-    const revisionNotes = await getRevisionNotes();
-    return (
-        <div>
-            {revisionNotes.map((revisionNote) => (
-                <RevisionNote id={revisionNote.id} />
-            ))}
-        </div>
-    );
+    return <RevisionNotes />;
 }

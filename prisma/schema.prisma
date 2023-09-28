@@ -24,5 +24,5 @@ model RevisionNote {
 
   title String
   content String
-  isPublished Boolean @default(false)
+  status String @default("draft")
 }
