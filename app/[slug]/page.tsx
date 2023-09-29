@@ -5,11 +5,13 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import "katex/dist/katex.min.css";
 
 async function getRevisionNote(slug: string) {
     const revisionNote = await prisma.revisionNote.findUnique({
         where: { slug },
     });
+    console.log(revisionNote);
     return revisionNote;
 }
 
@@ -39,6 +41,18 @@ export default async function RevisionNotePage({
                     {revisionNote.title}
                 </p>
                 <Markdown
+                    className="whitespace-pre-line"
+                    components={{
+                        h1: ({ node, ...props }) => (
+                            <p
+                                className="font-semibold text-blue-800"
+                                {...props}
+                            />
+                        ),
+                        p: ({ node, ...props }) => (
+                            <p className="text-sm text-gray-800" {...props} />
+                        ),
+                    }}
                     remarkPlugins={[remarkMath]}
                     rehypePlugins={[rehypeKatex]}
                 >

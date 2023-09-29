@@ -1,9 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { DialogHeader } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import {
+    Dialog,
+    DialogTrigger,
+    DialogContent,
+    DialogTitle,
+    DialogDescription,
+} from "@radix-ui/react-dialog";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -37,22 +45,26 @@ export default function EditPage({ params }: { params: { slug: string } }) {
     }, [params.slug]);
 
     async function updateRevisionNote({
+        id,
         slug,
         title,
         content,
         subject,
     }: {
+        id: string;
         slug: string;
         title: string;
         content: string;
         subject: string;
     }) {
-        const res = await fetch(`/api/${slug}`, {
+        console.log(id, slug, title, content, subject);
+        const res = await fetch(`/api/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                id,
                 slug,
                 title,
                 content,
@@ -61,9 +73,10 @@ export default function EditPage({ params }: { params: { slug: string } }) {
         });
         if (res.ok) {
             toast({
-                title: "Success",
-                description: "Revision note updated",
+                title: "Revision note updated",
+                description: `${title}`,
             });
+            router.push(`/${slug}`);
         }
     }
 
@@ -81,6 +94,7 @@ export default function EditPage({ params }: { params: { slug: string } }) {
                     size="sm"
                     onClick={() => {
                         updateRevisionNote({
+                            id,
                             slug,
                             title,
                             content,
@@ -124,7 +138,7 @@ export default function EditPage({ params }: { params: { slug: string } }) {
             <Textarea
                 value={content}
                 onChange={(event) => setContent(event.target.value)}
-                className="h-96 mt-2 mb-3"
+                className="mt-2 mb-3 h-screen"
             />
         </div>
     );

@@ -15,11 +15,11 @@ export async function GET(
 }
 
 export async function PUT(req: NextRequest) {
-    const { slug, title, content, subject } = await req.json();
+    const { id, slug, title, content, subject } = await req.json();
 
     const updated = await prisma.revisionNote.update({
         where: {
-            slug,
+            id,
         },
         data: {
             slug,
@@ -30,5 +30,6 @@ export async function PUT(req: NextRequest) {
     });
 
     revalidatePath(`/${slug}`);
+    revalidatePath("/");
     return NextResponse.json({ data: updated });
 }
