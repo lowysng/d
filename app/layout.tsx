@@ -3,6 +3,7 @@ import { RocketIcon } from "lucide-react";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
                         Whatsapp message at +6588425925 to find out more!
                     </AlertDescription>
                 </Alert>
+                <Toaster />
                 {children}
             </body>
         </html>

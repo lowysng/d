@@ -80,6 +80,11 @@ export const columns: ColumnDef<RevisionNote>[] = [
                                 View revision note
                             </DropdownMenuItem>
                         </Link>
+                        <Link href={`/${row.original.slug}/edit`}>
+                            <DropdownMenuItem>
+                                Edit revision note
+                            </DropdownMenuItem>
+                        </Link>
                         {/* <DropdownMenuItem>Edit revision note</DropdownMenuItem> */}
                     </DropdownMenuContent>
                 </DropdownMenu>

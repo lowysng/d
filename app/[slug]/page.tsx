@@ -29,9 +29,11 @@ export default async function RevisionNotePage({
                             Back to notes
                         </p>
                     </Link>
-                    <Button variant="outline" size="sm">
-                        Edit note
-                    </Button>
+                    <Link href={`/${revisionNote.slug}/edit`}>
+                        <Button variant="outline" size="sm">
+                            Edit note
+                        </Button>
+                    </Link>
                 </div>
                 <p className="text-xl font-semibold py-4">
                     {revisionNote.title}
