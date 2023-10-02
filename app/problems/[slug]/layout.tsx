@@ -26,6 +26,25 @@ export default async function ProblemsLayout({
         return <div>404 not found</div>;
     }
 
+    const chapters = await prisma.chapter.findMany({
+        where: {
+            course: {
+                id: subChapter?.chapter.course.id,
+            },
+        },
+        include: {
+            subChapters: true,
+            course: true,
+        },
+        orderBy: {
+            y_index: "asc",
+        },
+    });
+
+    chapters.forEach((chapter) =>
+        chapter.subChapters.sort((a, b) => a.y_index - b.y_index)
+    );
+
     const chapter = await prisma.chapter.findUnique({
         where: {
             id: subChapter?.chapter.id,
@@ -43,25 +62,29 @@ export default async function ProblemsLayout({
 
     return (
         <div className="flex">
-            <div className="w-96 h-screen px-8 bg-slate-50">
+            <div className="w-96 h-full px-8 bg-slate-50">
                 <div className="my-4">
-                    <p className="text-xs mb-2 text-slate-500">
+                    <p className="text-xs mb-4 text-slate-500">
                         Chapter overview
                     </p>
-                    <p className="font-semibold text-lg mb-2">{`${
-                        chapter.y_index + 1
-                    } ${chapter.name}`}</p>
-                    {chapter.subChapters.map((subChapter) => (
-                        <Link
-                            href={`/problems/${subChapter.slug}`}
-                            className="hover:underline"
-                            key={subChapter.id}
-                        >
-                            <p className="text-sm py-1">{`
+                    {chapters.map((chapter) => (
+                        <div className="mb-8">
+                            <p className="font-semibold text-lg mb-2">{`${
+                                chapter.y_index + 1
+                            } ${chapter.name}`}</p>
+                            {chapter.subChapters.map((subChapter) => (
+                                <Link
+                                    href={`/problems/${subChapter.slug}`}
+                                    className="hover:underline"
+                                    key={subChapter.id}
+                                >
+                                    <p className="text-sm py-1">{`
                                 ${chapter.y_index + 1}.${
-                                subChapter.y_index + 1
-                            } ${subChapter.name}`}</p>
-                        </Link>
+                                        subChapter.y_index + 1
+                                    } ${subChapter.name}`}</p>
+                                </Link>
+                            ))}
+                        </div>
                     ))}
                 </div>
             </div>

@@ -42,12 +42,10 @@ export default async function SubChapterProblems({
 
     return (
         <div>
-            <Link href={`/courses/${subChapter.chapter.course.slug}`}>
+            <Link href={`/courses`}>
                 <div className="flex text-gray-400 items-center mb-8 hover:underline">
                     <ChevronLeftIcon className="mr-2" />
-                    <p className="text-sm text-gray-400">
-                        Back to course chapters
-                    </p>
+                    <p className="text-sm text-gray-400">Back to courses</p>
                 </div>
             </Link>
             <h1 className="text-xl font-semibold">{`${

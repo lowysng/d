@@ -15,12 +15,25 @@ export default async function CoursesPage() {
         where: {
             isPublished: true,
         },
+        include: {
+            chapters: {
+                include: {
+                    subChapters: true,
+                },
+            },
+        },
+    });
+    courses.forEach((course) => {
+        course.chapters.sort((a, b) => a.y_index - b.y_index);
+        course.chapters.forEach((chapter) => {
+            chapter.subChapters.sort((a, b) => a.y_index - b.y_index);
+        });
     });
     return (
         <div>
             <h1 className="text-xl font-semibold">Select a course</h1>
             <p className="text-md text-gray-500 mb-4">
-                Pick up where you left off...
+                Pick up where you left off
             </p>
             {courses.map((course) => (
                 <Card
@@ -32,7 +45,9 @@ export default async function CoursesPage() {
                         <CardDescription>{course.description}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <Link href={`/courses/${course.slug}`}>
+                        <Link
+                            href={`/problems/${course.chapters[0].subChapters[0].slug}`}
+                        >
                             <Button variant="outline">View course</Button>
                         </Link>
                     </CardContent>
