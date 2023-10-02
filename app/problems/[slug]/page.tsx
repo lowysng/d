@@ -1,3 +1,5 @@
+export const revalidate = 10;
+
 import { prisma } from "@/lib/db";
 import "katex/dist/katex.min.css";
 import Problems from "@/components/Problems";

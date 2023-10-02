@@ -32,7 +32,7 @@ x = \\frac{5}{2} \\quad &\\text{or} \\quad x = \\frac{1}{3} \\nonumber
 \\end{align}
 $$
 
-> ${prompt}.
+> ${prompt}
     `;
 
     console.log(">>> hitting llm");
