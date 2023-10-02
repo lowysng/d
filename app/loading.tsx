@@ -1,8 +1,6 @@
-import { Skeleton } from "@/components/ui/skeleton";
-
 export default function Loading() {
     return (
-        <div className="w-screen h-screen flex justify-center items-center">
+        <div className="h-screen flex justify-center items-center">
             <svg
                 className="animate-spin h-4 w-4 mr-4"
                 width="24"

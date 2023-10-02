@@ -28,3 +28,59 @@ model RevisionNote {
   subject String
   // chapter String
 }
+
+model Course {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt() @default(now())
+
+  name String
+  description String @default("")
+  slug String @unique
+  isPublished Boolean @default(false)
+
+  chapters Chapter[]
+}
+
+model Chapter {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt() @default(now())
+
+  name String
+  slug String @unique
+  y_index Int @default(999)
+
+  course Course @relation(fields: [courseId], references: [id])
+  courseId String
+
+  subChapters SubChapter[]
+}
+
+model SubChapter {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt() @default(now())
+
+  name String
+  slug String @unique
+  y_index Int @default(999)
+
+  chapter Chapter @relation(fields: [chapterId], references: [id])
+  chapterId String
+
+  problems Problem[]
+}
+
+model Problem {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt() @default(now())
+
+  prompt String
+  solution String
+  y_index Int @default(999)
+
+  subChapter SubChapter @relation(fields: [subChapterId], references: [id])
+  subChapterId String
+}

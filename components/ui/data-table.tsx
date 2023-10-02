@@ -47,7 +47,7 @@ export function DataTable<TData, TValue>({
         <div className="w-full">
             <div className="flex items-center py-4">
                 <Input
-                    placeholder="Search notes..."
+                    placeholder="Search"
                     value={
                         (table
                             .getColumn("title")
