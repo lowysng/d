@@ -37,7 +37,7 @@ export default function Problems({ problems }: { problems: Problem[] }) {
                         }
                         w-8 h-8 rounded-sm flex justify-center items-center                        
                         `}
-                        key={problem.id}
+                        key={index}
                         onClick={() => {
                             const searchParams = new URLSearchParams();
                             searchParams.set("index", String(index + 1));
