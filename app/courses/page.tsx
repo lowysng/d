@@ -30,7 +30,7 @@ export default async function CoursesPage() {
                     </CardHeader>
                     <CardContent>
                         <Link href={`/courses/${course.slug}`}>
-                            <Button variant="outline">Chapters</Button>
+                            <Button variant="outline">View course</Button>
                         </Link>
                     </CardContent>
                 </Card>

@@ -6,6 +6,7 @@ import {
     CardContent,
 } from "@/components/ui/card";
 import { prisma } from "@/lib/db";
+import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { ArrowLeftIcon, ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -41,12 +42,14 @@ export default async function CoursePage({
 
     return (
         <div>
-            <Link href="/courses">
-                <h1 className="text-xl font-semibold">{course.name}</h1>
-                <p className="text-md text-gray-500 mb-4">
-                    {course.description}
-                </p>
+            <Link href={`/courses`}>
+                <div className="flex text-gray-400 items-center mb-8 hover:underline">
+                    <ChevronLeftIcon className="mr-2" />
+                    <p className="text-sm text-gray-400">Back to home</p>
+                </div>
             </Link>
+            <h1 className="text-xl font-semibold">{course.name}</h1>
+            <p className="text-md text-gray-500 mb-4">{course.description}</p>
             {chapters.map((chapter) => {
                 const subChapters = chapter.subChapters;
                 subChapters.sort((a, b) => a.y_index - b.y_index);

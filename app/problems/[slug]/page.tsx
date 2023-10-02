@@ -1,4 +1,8 @@
 import { prisma } from "@/lib/db";
+import "katex/dist/katex.min.css";
+import Problems from "@/components/Problems";
+import Link from "next/link";
+import { ArrowLeftIcon, ChevronLeftIcon } from "lucide-react";
 
 export default async function SubChapterProblems({
     params,
@@ -10,7 +14,11 @@ export default async function SubChapterProblems({
             slug: params.slug,
         },
         include: {
-            chapter: true,
+            chapter: {
+                include: {
+                    course: true,
+                },
+            },
         },
     });
 
@@ -27,13 +35,28 @@ export default async function SubChapterProblems({
         include: {
             subChapter: true,
         },
+        orderBy: {
+            y_index: "asc",
+        },
     });
+
     return (
         <div>
+            <Link href={`/courses/${subChapter.chapter.course.slug}`}>
+                <div className="flex text-gray-400 items-center mb-8 hover:underline">
+                    <ChevronLeftIcon className="mr-2" />
+                    <p className="text-sm text-gray-400">Back to course</p>
+                </div>
+            </Link>
             <h1 className="text-xl font-semibold">{subChapter.name}</h1>
-            <p className="text-md text-gray-500 mb-4">
-                {subChapter.chapter.name}
-            </p>
+
+            <Link href={`/courses/${subChapter.chapter.course.slug}`}>
+                <p className="text-md text-gray-500 mb-8 hover:underline">
+                    {subChapter.chapter.course.name} &gt;{" "}
+                    {subChapter.chapter.name}
+                </p>
+            </Link>
+            <Problems problems={problems} />
         </div>
     );
 }
