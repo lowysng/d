@@ -8,7 +8,7 @@ export default function CoursesLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="bg-slate-50 h-screen">
+        <div className="bg-slate-50 min-h-screen h-full">
             {/* <Alert>
                 <RocketIcon className="h-4 w-4" />
                 <AlertTitle>Looking for a personal tutor?</AlertTitle>

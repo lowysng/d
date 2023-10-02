@@ -36,8 +36,11 @@ export default async function CoursesPage() {
                 We have lots of A level problems for you to practice on. Select
                 a course below to get started. Have fun!
             </p>
+            <Card className="shadow-sm my-4 bg-neutral-100 h-36 border border-red-300 border-dashed flex justify-center items-center">
+                <h1 className="text-red-300">ad space</h1>
+            </Card>
             {courses.map((course) => (
-                <Card key={course.id} className="shadow-sm">
+                <Card key={course.id} className="shadow-sm my-4">
                     <div className="flex justify-between m-6">
                         <div>
                             <CardTitle className="mb-2">
@@ -49,7 +52,7 @@ export default async function CoursesPage() {
                         </div>
                         <div>
                             <Link
-                                href={`/problems/${course.chapters[0].subChapters[0].slug}`}
+                                href={`/problems/${course.chapters[0]?.subChapters[0]?.slug}`}
                             >
                                 <Button
                                     size="sm"
@@ -66,7 +69,7 @@ export default async function CoursesPage() {
                             {course.chapters.map((chapter) => (
                                 <Link
                                     key={chapter.id}
-                                    href={`/problems/${chapter.subChapters[0].slug}`}
+                                    href={`/problems/${chapter.subChapters[0]?.slug}`}
                                 >
                                     <p className="text-sm my-1 hover:underline">
                                         {chapter.y_index + 1} {chapter.name}
