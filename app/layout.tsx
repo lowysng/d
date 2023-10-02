@@ -19,6 +19,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
+                {children}
                 {/* <Alert>
                     <RocketIcon className="h-4 w-4" />
                     <AlertTitle>Looking for a personal tutor?</AlertTitle>
@@ -28,7 +29,7 @@ export default function RootLayout({
                     </AlertDescription>
                 </Alert> */}
                 <Toaster />
-                <div className="max-w-[540px] mx-auto my-8">{children}</div>
+                {/* <div className="max-w-[540px] mx-auto my-8">{children}</div> */}
             </body>
         </html>
     );

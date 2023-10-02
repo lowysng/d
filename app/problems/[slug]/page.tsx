@@ -48,7 +48,9 @@ export default async function SubChapterProblems({
                     <p className="text-sm text-gray-400">Back to course</p>
                 </div>
             </Link>
-            <h1 className="text-xl font-semibold">{subChapter.name}</h1>
+            <h1 className="text-xl font-semibold">{`${
+                subChapter.chapter.y_index + 1
+            }.${subChapter.y_index + 1} ${subChapter.name}`}</h1>
 
             <Link href={`/courses/${subChapter.chapter.course.slug}`}>
                 <p className="text-md text-gray-500 mb-8 hover:underline">
