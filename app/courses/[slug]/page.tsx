@@ -54,7 +54,7 @@ export default async function CoursePage({
                 const subChapters = chapter.subChapters;
                 subChapters.sort((a, b) => a.y_index - b.y_index);
                 return (
-                    <Card className="my-8" key={chapter.id}>
+                    <Card className="my-8 shadow-sm" key={chapter.id}>
                         <CardHeader>
                             <CardTitle>
                                 {chapter.y_index + 1} {chapter.name}

@@ -75,7 +75,7 @@ export default function Problems({ problems }: { problems: Problem[] }) {
             )}
             {showSolution && (
                 <Markdown
-                    className="m-4"
+                    className="m-4 mb-8"
                     remarkPlugins={[remarkMath]}
                     rehypePlugins={[rehypeKatex]}
                 >

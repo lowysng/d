@@ -1,3 +1,4 @@
+import { Separator } from "@/components/ui/separator";
 import { prisma } from "@/lib/db";
 import Link from "next/link";
 
@@ -42,18 +43,21 @@ export default async function ProblemsLayout({
 
     return (
         <div className="flex">
-            <div className="w-96 h-screen p-12">
+            <div className="w-96 h-screen px-8 bg-slate-50">
                 <div className="my-4">
-                    <p className="font-semibold">{`${chapter.y_index + 1} ${
-                        chapter.name
-                    }`}</p>
+                    <p className="text-xs mb-2 text-slate-500">
+                        Chapter overview
+                    </p>
+                    <p className="font-semibold text-lg mb-2">{`${
+                        chapter.y_index + 1
+                    } ${chapter.name}`}</p>
                     {chapter.subChapters.map((subChapter) => (
                         <Link
                             href={`/problems/${subChapter.slug}`}
                             className="hover:underline"
                             key={subChapter.id}
                         >
-                            <p className="text-sm">{`
+                            <p className="text-sm py-1">{`
                                 ${chapter.y_index + 1}.${
                                 subChapter.y_index + 1
                             } ${subChapter.name}`}</p>
@@ -61,7 +65,10 @@ export default async function ProblemsLayout({
                     ))}
                 </div>
             </div>
-            <div className="mx-4 my-8">{children}</div>
+            <div>
+                <Separator orientation="vertical" />
+            </div>
+            <div className="mx-12 my-8">{children}</div>
         </div>
     );
 }

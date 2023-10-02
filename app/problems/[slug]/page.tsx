@@ -45,19 +45,20 @@ export default async function SubChapterProblems({
             <Link href={`/courses/${subChapter.chapter.course.slug}`}>
                 <div className="flex text-gray-400 items-center mb-8 hover:underline">
                     <ChevronLeftIcon className="mr-2" />
-                    <p className="text-sm text-gray-400">Back to course</p>
+                    <p className="text-sm text-gray-400">
+                        Back to course chapters
+                    </p>
                 </div>
             </Link>
             <h1 className="text-xl font-semibold">{`${
                 subChapter.chapter.y_index + 1
             }.${subChapter.y_index + 1} ${subChapter.name}`}</h1>
 
-            <Link href={`/courses/${subChapter.chapter.course.slug}`}>
-                <p className="text-md text-gray-500 mb-8 hover:underline">
-                    {subChapter.chapter.course.name} &gt;{" "}
-                    {subChapter.chapter.name}
-                </p>
-            </Link>
+            {/* <Link href={`/courses/${subChapter.chapter.course.slug}`}> */}
+            <p className="text-md text-gray-500 mb-8">
+                {subChapter.chapter.course.name} &gt; {subChapter.chapter.name}
+            </p>
+            {/* </Link> */}
             <Problems problems={problems} />
         </div>
     );
