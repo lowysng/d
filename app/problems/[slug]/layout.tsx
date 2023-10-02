@@ -68,7 +68,7 @@ export default async function ProblemsLayout({
                         Chapter overview
                     </p>
                     {chapters.map((chapter) => (
-                        <div className="mb-8">
+                        <div className="mb-8" key={chapter.id}>
                             <p className="font-semibold text-lg mb-2">{`${
                                 chapter.y_index + 1
                             } ${chapter.name}`}</p>
