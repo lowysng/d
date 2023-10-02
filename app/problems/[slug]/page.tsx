@@ -31,6 +31,7 @@ export default async function SubChapterProblems({
             subChapter: {
                 slug: params.slug,
             },
+            is_published: true,
         },
         include: {
             subChapter: true,
@@ -41,7 +42,7 @@ export default async function SubChapterProblems({
     });
 
     return (
-        <div>
+        <div className="max-w-[800px]">
             <Link href={`/courses`}>
                 <div className="flex text-gray-400 items-center mb-8 hover:underline">
                     <ChevronLeftIcon className="mr-2" />

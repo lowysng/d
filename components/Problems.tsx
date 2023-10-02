@@ -48,7 +48,7 @@ export default function Problems({ problems }: { problems: Problem[] }) {
             {problem && (
                 <Card className="mb-8">
                     <Markdown
-                        className="m-4"
+                        className="m-4 text-md"
                         remarkPlugins={[remarkMath]}
                         rehypePlugins={[rehypeKatex]}
                     >

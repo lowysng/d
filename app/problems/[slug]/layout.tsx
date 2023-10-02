@@ -65,7 +65,7 @@ export default async function ProblemsLayout({
             <div className="w-96 h-full px-8 bg-slate-50">
                 <div className="my-4">
                     <p className="text-xs mb-4 text-slate-500">
-                        Chapter overview
+                        Course overview
                     </p>
                     {chapters.map((chapter) => (
                         <div className="mb-8" key={chapter.id}>

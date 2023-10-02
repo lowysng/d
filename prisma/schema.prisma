@@ -80,6 +80,7 @@ model Problem {
   prompt String
   solution String
   y_index Int @default(999)
+  is_published Boolean @default(false)
 
   subChapter SubChapter @relation(fields: [subChapterId], references: [id])
   subChapterId String
