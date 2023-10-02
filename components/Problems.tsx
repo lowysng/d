@@ -34,7 +34,7 @@ export default function Problems({ problems }: { problems: Problem[] }) {
                         onClick={() => {
                             const searchParams = new URLSearchParams();
                             searchParams.set("index", String(index + 1));
-                            router.push(
+                            router.replace(
                                 pathname + "?" + searchParams.toString()
                             );
                             setSelectedIndex(index + 1);
