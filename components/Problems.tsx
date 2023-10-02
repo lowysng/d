@@ -2,14 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import {
-    Card,
-    CardHeader,
-    CardTitle,
-    CardDescription,
-    CardContent,
-    CardFooter,
-} from "./ui/card";
+import { Card, CardFooter } from "./ui/card";
 import { Problem } from "@prisma/client";
 import Markdown from "react-markdown";
 import remarkMath from "remark-math";
@@ -41,7 +34,7 @@ export default function Problems({ problems }: { problems: Problem[] }) {
                         onClick={() => {
                             const searchParams = new URLSearchParams();
                             searchParams.set("index", String(index + 1));
-                            router.push(
+                            router.replace(
                                 pathname + "?" + searchParams.toString()
                             );
                             setSelectedIndex(index + 1);
