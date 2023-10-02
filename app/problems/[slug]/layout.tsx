@@ -51,6 +51,7 @@ export default async function ProblemsLayout({
                         <Link
                             href={`/problems/${subChapter.slug}`}
                             className="hover:underline"
+                            key={subChapter.id}
                         >
                             <p className="text-sm">{`
                                 ${chapter.y_index + 1}.${

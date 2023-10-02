@@ -54,7 +54,7 @@ export default async function CoursePage({
                 const subChapters = chapter.subChapters;
                 subChapters.sort((a, b) => a.y_index - b.y_index);
                 return (
-                    <Card className="my-8">
+                    <Card className="my-8" key={chapter.id}>
                         <CardHeader>
                             <CardTitle>
                                 {chapter.y_index + 1} {chapter.name}
@@ -64,7 +64,10 @@ export default async function CoursePage({
                         <CardContent>
                             <ul className="text-sm">
                                 {subChapters.map((subChapter) => (
-                                    <Link href={`/problems/${subChapter.slug}`}>
+                                    <Link
+                                        href={`/problems/${subChapter.slug}`}
+                                        key={subChapter.id}
+                                    >
                                         <li className="my-1">
                                             <span className="hover:underline cursor-pointer">
                                                 {chapter.y_index + 1}.

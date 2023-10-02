@@ -23,7 +23,10 @@ export default async function CoursesPage() {
                 Pick up where you left off...
             </p>
             {courses.map((course) => (
-                <Card className="my-4 flex justify-between items-center">
+                <Card
+                    className="my-4 flex justify-between items-center"
+                    key={course.id}
+                >
                     <CardHeader>
                         <CardTitle>{course.name}</CardTitle>
                         <CardDescription>{course.description}</CardDescription>
