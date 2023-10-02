@@ -4,6 +4,13 @@ import Problems from "@/components/Problems";
 import Link from "next/link";
 import { ArrowLeftIcon, ChevronLeftIcon } from "lucide-react";
 
+export async function generateStaticParams() {
+    const subChapters = await prisma.subChapter.findMany();
+    return subChapters.map((subChapter) => ({
+        subChapter: subChapter.slug,
+    }));
+}
+
 export default async function SubChapterProblems({
     params,
 }: {
