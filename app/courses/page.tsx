@@ -36,20 +36,39 @@ export default async function CoursesPage() {
                 Pick up where you left off
             </p>
             {courses.map((course) => (
-                <Card
-                    className="my-4 flex justify-between items-center"
-                    key={course.id}
-                >
-                    <CardHeader>
-                        <CardTitle>{course.name}</CardTitle>
-                        <CardDescription>{course.description}</CardDescription>
-                    </CardHeader>
+                <Card key={course.id}>
+                    <div className="flex justify-between m-6">
+                        <div>
+                            <CardTitle className="mb-2">
+                                {course.name}
+                            </CardTitle>
+                            <CardDescription>
+                                {course.description}
+                            </CardDescription>
+                        </div>
+                        <div>
+                            <Link
+                                href={`/problems/${course.chapters[0].subChapters[0].slug}`}
+                            >
+                                <Button variant="outline" className="w-full">
+                                    View chapters
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
                     <CardContent>
-                        <Link
-                            href={`/problems/${course.chapters[0].subChapters[0].slug}`}
-                        >
-                            <Button variant="outline">View course</Button>
-                        </Link>
+                        <div className="grid grid-cols-2">
+                            {course.chapters.map((chapter) => (
+                                <Link
+                                    key={chapter.id}
+                                    href={`/problems/${chapter.subChapters[0].slug}`}
+                                >
+                                    <p className="text-sm my-1 hover:underline">
+                                        {chapter.y_index + 1} {chapter.name}
+                                    </p>
+                                </Link>
+                            ))}
+                        </div>
                     </CardContent>
                 </Card>
             ))}
