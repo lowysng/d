@@ -7,7 +7,7 @@ import { ArrowLeftIcon, ChevronLeftIcon } from "lucide-react";
 export async function generateStaticParams() {
     const subChapters = await prisma.subChapter.findMany();
     return subChapters.map((subChapter) => ({
-        subChapter: subChapter.slug,
+        slug: subChapter.slug,
     }));
 }
 
