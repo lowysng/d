@@ -36,9 +36,9 @@ export default async function CoursesPage() {
                 We have lots of A level problems for you to practice on. Select
                 a course below to get started. Have fun!
             </p>
-            <Card className="shadow-sm my-4 bg-neutral-100 h-36 border border-red-300 border-dashed flex justify-center items-center">
+            {/* <Card className="shadow-sm my-4 bg-neutral-100 h-36 border border-red-300 border-dashed flex justify-center items-center">
                 <h1 className="text-red-300">ad space</h1>
-            </Card>
+            </Card> */}
             {courses.map((course) => (
                 <Card key={course.id} className="shadow-sm my-4">
                     <div className="flex justify-between m-6">

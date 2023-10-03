@@ -91,7 +91,7 @@ export default async function ProblemsLayout({
             <div>
                 <Separator orientation="vertical" />
             </div>
-            <div className="mx-12 my-8">{children}</div>
+            <div className="mx-12 my-8 w-[660px]">{children}</div>
         </div>
     );
 }
