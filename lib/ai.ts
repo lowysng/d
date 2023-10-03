@@ -32,8 +32,42 @@ x = \\frac{5}{2} \\quad &\\text{or} \\quad x = \\frac{1}{3} \\nonumber
 \\end{align}
 $$
 
+Here's another example:
+
+> Solve the simultaneous equations $y=3x-1$ and $8x^2-2xy=4$.
+$$
+\begin{align*} \nonumber
+8x^2-2xy &= 4 \\ \nonumber
+8x^2-2x(3x-1) &= 4 \\ \nonumber
+8x^2-6x^2+2x &= 4 \\ \nonumber
+2x^2+2x-4 &= 0 \\ \nonumber
+x^2+x-2 &= 0 \\ \nonumber
+(x+2)(x-1) &= 0 \nonumber
+\end{align*}
+$$
+
+$$
+\begin{align*} \nonumber
+x+2 = 0 \quad &\text{or} \quad x-1=0 \\ \nonumber
+x = -2 \quad &\text{or} \quad x = 1 \nonumber
+\end{align*}
+$$
+
+Substituting $x$ into the equation $y = 3x - 1$:
+
+$$
+\begin{align*} \nonumber
+y = 3(-2) - 1 \quad &\text{or} \quad y = 3(1) - 1 \\ \nonumber
+y = -7 \quad &\text{or} \quad y = 2 \nonumber
+\end{align*}
+$$
+
+So, the solutions are $(-2,-7)$ and $(1,2)$.
+
+Now, generate the response for this prompt:
+
 > ${prompt}
-    `;
+`;
 
     console.log(">>> hitting llm");
     const llmResult = await llm.predict(text);

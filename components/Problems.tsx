@@ -46,7 +46,7 @@ export default function Problems({ problems }: { problems: Problem[] }) {
                 ))}
             </div>
             {problem && (
-                <Card className="mb-8">
+                <Card className="mb-8 bg-slate-50 shadow-sm">
                     <Markdown
                         className="m-4 text-md"
                         remarkPlugins={[remarkMath]}

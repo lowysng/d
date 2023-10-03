@@ -37,3 +37,4 @@ next-env.d.ts
 
 /archive
 /app/sandbox
+/app/admin
