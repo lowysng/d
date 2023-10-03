@@ -81,7 +81,7 @@ export default async function ProblemsLayout({
                                     <p className="text-sm py-1">{`
                                 ${chapter.y_index + 1}.${
                                         subChapter.y_index + 1
-                                    } ${subChapter.name}`}</p>
+                                    } ${subChapter.name} `}</p>
                                 </Link>
                             ))}
                         </div>

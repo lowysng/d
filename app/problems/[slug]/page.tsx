@@ -67,7 +67,14 @@ export default async function SubChapterProblems({
                 {subChapter.chapter.course.name} &gt; {subChapter.chapter.name}
             </p>
             {/* </Link> */}
-            <Problems problems={problems} />
+            {problems.length > 0 ? (
+                <Problems problems={problems} />
+            ) : (
+                <p className="text-sm italic">
+                    We don't have practice problems for this part of the course
+                    yet. Check back later!
+                </p>
+            )}
         </div>
     );
 }
