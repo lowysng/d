@@ -71,8 +71,8 @@ export default async function SubChapterProblems({
                 <Problems problems={problems} />
             ) : (
                 <p className="text-sm italic">
-                    We don't have practice problems for this part of the course
-                    yet. Check back later!
+                    We don&apos;t have practice problems for this part of the
+                    course yet. Check back later!
                 </p>
             )}
         </div>
