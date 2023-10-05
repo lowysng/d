@@ -8,6 +8,8 @@ import Markdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { Button } from "./ui/button";
+import { Separator } from "@radix-ui/react-separator";
+import { ThumbsDownIcon, ThumbsUpIcon } from "lucide-react";
 
 export default function Problems({ problems }: { problems: Problem[] }) {
     const searchParams = useSearchParams();
@@ -67,13 +69,24 @@ export default function Problems({ problems }: { problems: Problem[] }) {
                 </Card>
             )}
             {showSolution && (
-                <Markdown
-                    className="m-4 mb-8"
-                    remarkPlugins={[remarkMath]}
-                    rehypePlugins={[rehypeKatex]}
-                >
-                    {problem?.solution}
-                </Markdown>
+                <div>
+                    <Markdown
+                        className="m-4 mb-8"
+                        remarkPlugins={[remarkMath]}
+                        rehypePlugins={[rehypeKatex]}
+                    >
+                        {problem?.solution}
+                    </Markdown>
+                    <div className="flex items-center text-gray-700">
+                        <p className="text-xs">Is the solution helpful?</p>
+                        <p className="hover:text-red-500">
+                            <ThumbsDownIcon className="h-4 w-4 mx-2 cursor-pointer" />
+                        </p>
+                        <p className="hover:text-green-500">
+                            <ThumbsUpIcon className="h-4 w-4  cursor-pointer" />
+                        </p>
+                    </div>
+                </div>
             )}
         </div>
     );

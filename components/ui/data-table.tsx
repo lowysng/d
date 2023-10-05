@@ -3,8 +3,11 @@
 import {
     ColumnDef,
     ColumnFiltersState,
+    VisibilityState,
     flexRender,
     getCoreRowModel,
+    getFacetedRowModel,
+    getFacetedUniqueValues,
     getFilteredRowModel,
     useReactTable,
 } from "@tanstack/react-table";
@@ -18,7 +21,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import React from "react";
-import { Input } from "./input";
+import { DataTableToolbar } from "./data-table-toolbar";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
@@ -38,36 +41,35 @@ export function DataTable<TData, TValue>({
         getCoreRowModel: getCoreRowModel(),
         onColumnFiltersChange: setColumnFilters,
         getFilteredRowModel: getFilteredRowModel(),
+        getFacetedRowModel: getFacetedRowModel(),
+        getFacetedUniqueValues: getFacetedUniqueValues(),
         state: {
             columnFilters,
+        },
+        initialState: {
+            columnVisibility: {
+                year: false,
+                month: false,
+                paperNumber: false,
+                variant: false,
+            },
         },
     });
 
     return (
         <div className="w-full">
-            <div className="flex items-center py-4">
-                <Input
-                    placeholder="Search"
-                    value={
-                        (table
-                            .getColumn("title")
-                            ?.getFilterValue() as string) ?? ""
-                    }
-                    onChange={(event) =>
-                        table
-                            .getColumn("title")
-                            ?.setFilterValue(event.target.value)
-                    }
-                />
-            </div>
-            <div className="rounded-md border">
+            <DataTableToolbar table={table} />
+            <div className="rounded-md border bg-white shadow-sm">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead
+                                            key={header.id}
+                                            className="text-blue-900 h-10 text-xs font-semibold"
+                                        >
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(

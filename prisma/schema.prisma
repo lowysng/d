@@ -85,3 +85,35 @@ model Problem {
   subChapter SubChapter @relation(fields: [subChapterId], references: [id])
   subChapterId String
 }
+
+model Subject {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt() @default(now())
+  isPublished Boolean @default(false)
+
+  name String
+  slug String @unique
+  code String @default("")
+  y_index Int @default(9999)
+
+  pastPapers PastPaper[]
+}
+
+model PastPaper {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt() @default(now())
+  isPublished Boolean @default(false)
+  
+  subjectId String
+  subject Subject @relation(fields: [subjectId], references: [id])
+
+  number Int
+  year DateTime
+  month DateTime
+  variant Int
+
+  url String @unique
+  markingSchemeUrl String @unique
+}
