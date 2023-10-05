@@ -53,8 +53,8 @@ export default function PastPapersPage() {
                     <AlertDescription className="text-gray-900 tracking-wide">
                         We only have past papers for three subjects:
                         Mathematics, Chemistry, and Physics, up from 2022 to
-                        May/June 2023. We're working on adding more subjects and
-                        more papers, so stay tuned!
+                        May/June 2023. We&apos;re working on adding more
+                        subjects and more papers, so stay tuned!
                     </AlertDescription>
                 </Alert>
             </div>
