@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({
@@ -38,6 +39,7 @@ gtag('config', 'AW-456320937');
             <body className={roboto.className}>
                 <div className="bg-slate-50">
                     {children}
+                    <Analytics />
                     <Toaster />
                 </div>
                 {/* <div className="max-w-[540px] mx-auto my-8">{children}</div> */}
