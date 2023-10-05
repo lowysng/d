@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({
@@ -21,6 +22,19 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
+            <Script
+                async
+                src="https://www.googletagmanager.com/gtag/js?id=AW-456320937"
+            />
+            <Script>
+                {`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'AW-456320937');
+`}
+            </Script>
             <body className={roboto.className}>
                 <div className="bg-slate-50">
                     {children}
