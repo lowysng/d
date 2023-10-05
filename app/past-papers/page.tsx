@@ -6,6 +6,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { columns } from "./table";
 import React from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Bell } from "lucide-react";
 
 export default function PastPapersPage() {
     // const searchParams = useSearchParams();
@@ -45,6 +47,17 @@ export default function PastPapersPage() {
 
     return (
         <div>
+            <div className="my-4">
+                <Alert>
+                    <Bell className="h-4 w-4" />
+                    <AlertDescription className="text-gray-900 tracking-wide">
+                        We only have past papers for three subjects:
+                        Mathematics, Chemistry, and Physics, up from 2022 to
+                        May/June 2023. We're working on adding more subjects and
+                        more papers, so stay tuned!
+                    </AlertDescription>
+                </Alert>
+            </div>
             <DataTable columns={columns} data={pastPapers} />
         </div>
     );

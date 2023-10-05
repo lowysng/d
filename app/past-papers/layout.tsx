@@ -1,6 +1,3 @@
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { RocketIcon } from "lucide-react";
-
 export default function PastPapersLayout({
     children,
 }: {
@@ -20,12 +17,8 @@ export default function PastPapersLayout({
             </Alert> */}
             <div className="mx-auto max-w-4xl pt-8 pb-96 px-8">
                 <h1 className="text-xl font-semibold text-blue-950">
-                    AS and A Level Past Papers
+                    CAIE AS and A Level Past Papers
                 </h1>
-                <p className="text-sm text-gray-600 mt-1 mb-4">
-                    We have lots of past papers for you to practice on. Use the
-                    filters below to find the papers you need!
-                </p>
                 {children}
             </div>
         </div>
