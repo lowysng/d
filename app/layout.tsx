@@ -10,7 +10,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-    title: "study",
+    title: "AS and A Level Past Papers",
+    description: "CAIE AS and A Level Past Papers",
 };
 
 export default function RootLayout({
