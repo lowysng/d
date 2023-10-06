@@ -39,6 +39,15 @@ export function DataTableFacetedFilter<TData, TValue>({
     const facets = column?.getFacetedUniqueValues();
     const selectedValues = new Set(column?.getFilterValue() as string[]);
 
+    function postAnalyticsFilterEvent() {
+        fetch("/api/analytics", {
+            method: "POST",
+            body: JSON.stringify({
+                event: "filter",
+            }),
+        });
+    }
+
     return (
         <div className="m-1">
             <Popover>
@@ -47,6 +56,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                         variant="outline"
                         size="sm"
                         className="h-8 border border-dashed hover:shadow-sm "
+                        onClick={() => postAnalyticsFilterEvent()}
                     >
                         {selectedValues?.size > 0 ? (
                             <MinusCircledIcon className="mr-2 h-4 w-4" />
@@ -125,6 +135,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                                                         ? filterValues
                                                         : undefined
                                                 );
+                                                postAnalyticsFilterEvent();
                                             }}
                                         >
                                             <div

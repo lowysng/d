@@ -5,6 +5,16 @@ import { ColumnDef } from "@tanstack/react-table";
 import { DownloadIcon } from "lucide-react";
 import Link from "next/link";
 
+function postAnalyticsDownloadEvent(file: string) {
+    fetch("/api/analytics", {
+        method: "POST",
+        body: JSON.stringify({
+            event: "download",
+            data: file,
+        }),
+    });
+}
+
 export const subjects = [
     {
         value: "Mathematics",
@@ -124,6 +134,9 @@ export const columns: ColumnDef<PastPaper>[] = [
                             size="sm"
                             variant="secondary"
                             className="h-auto text-xs py-1 mr-2 hover:bg-blue-600 hover:text-white hover:shadow-md"
+                            onClick={() =>
+                                postAnalyticsDownloadEvent(row.original.url)
+                            }
                         >
                             Question paper{" "}
                             <DownloadIcon className="h-3 w-3 ml-1" />
@@ -138,6 +151,11 @@ export const columns: ColumnDef<PastPaper>[] = [
                                 size="sm"
                                 variant="secondary"
                                 className="h-auto text-xs py-1 mr-2 hover:bg-blue-600 hover:text-white hover:shadow-md"
+                                onClick={() =>
+                                    postAnalyticsDownloadEvent(
+                                        row.original.markingSchemeUrl
+                                    )
+                                }
                             >
                                 Marking scheme{" "}
                                 <DownloadIcon className="h-3 w-3 ml-1" />
