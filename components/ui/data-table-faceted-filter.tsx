@@ -60,7 +60,6 @@ export function DataTableFacetedFilter<TData, TValue>({
                         variant="outline"
                         size="sm"
                         className="h-8 border border-dashed hover:shadow-sm "
-                        onClick={() => postAnalyticsFilterEvent()}
                     >
                         {selectedValues?.size > 0 ? (
                             <MinusCircledIcon className="mr-2 h-4 w-4" />
