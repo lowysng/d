@@ -39,11 +39,15 @@ export function DataTableFacetedFilter<TData, TValue>({
     const facets = column?.getFacetedUniqueValues();
     const selectedValues = new Set(column?.getFilterValue() as string[]);
 
-    function postAnalyticsFilterEvent() {
+    function postAnalyticsFilterEvent(
+        action: "apply_filter" | "remove_filter",
+        values: string
+    ) {
         fetch("/api/analytics", {
             method: "POST",
             body: JSON.stringify({
-                event: "filter",
+                event: action,
+                data: `${column?.id}: ${values}`,
             }),
         });
     }
@@ -122,8 +126,16 @@ export function DataTableFacetedFilter<TData, TValue>({
                                                     selectedValues.delete(
                                                         option.value
                                                     );
+                                                    postAnalyticsFilterEvent(
+                                                        "remove_filter",
+                                                        option.value
+                                                    );
                                                 } else {
                                                     selectedValues.add(
+                                                        option.value
+                                                    );
+                                                    postAnalyticsFilterEvent(
+                                                        "apply_filter",
                                                         option.value
                                                     );
                                                 }
@@ -135,7 +147,6 @@ export function DataTableFacetedFilter<TData, TValue>({
                                                         ? filterValues
                                                         : undefined
                                                 );
-                                                postAnalyticsFilterEvent();
                                             }}
                                         >
                                             <div

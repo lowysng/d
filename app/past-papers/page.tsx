@@ -24,6 +24,14 @@ export default function PastPapersPage() {
             const data = await res.json();
             setPastPapers(data.data);
             setIsLoading(false);
+
+            await fetch("/api/analytics", {
+                method: "POST",
+                body: JSON.stringify({
+                    event: "page_view",
+                    data: "/past-papers",
+                }),
+            });
         }
 
         getPastPapers();

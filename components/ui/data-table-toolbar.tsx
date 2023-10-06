@@ -21,6 +21,15 @@ export function DataTableToolbar<TData>({
 }: DataTableToolbarProps<TData>) {
     const isFiltered = table.getState().columnFilters.length > 0;
 
+    function postAnalyticsResetFilterEvent() {
+        fetch("/api/analytics", {
+            method: "POST",
+            body: JSON.stringify({
+                event: "reset_filter",
+            }),
+        });
+    }
+
     return (
         <div className="flex items-center justify-between mb-2">
             <div className="flex flex-1 items-center flex-wrap">
@@ -77,7 +86,10 @@ export function DataTableToolbar<TData>({
                 {isFiltered && (
                     <Button
                         variant="ghost"
-                        onClick={() => table.resetColumnFilters()}
+                        onClick={() => {
+                            table.resetColumnFilters();
+                            postAnalyticsResetFilterEvent();
+                        }}
                         className="h-8 px-2 lg:px-3 hover:shadow-sm"
                     >
                         Reset
