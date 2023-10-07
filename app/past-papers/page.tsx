@@ -8,6 +8,9 @@ import { columns } from "./table";
 import React from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Bell } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function PastPapersPage() {
     // const searchParams = useSearchParams();
@@ -15,6 +18,9 @@ export default function PastPapersPage() {
 
     const [pastPapers, setPastPapers] = useState<PastPaper[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [email, setEmail] = useState("");
+    const [emailValidated, setEmailValidated] = useState(false);
+    const { toast } = useToast();
 
     useEffect(() => {
         async function getPastPapers() {
@@ -36,6 +42,33 @@ export default function PastPapersPage() {
 
         getPastPapers();
     }, []);
+
+    async function subscribe() {
+        await fetch("/api/subscribe", {
+            method: "POST",
+            body: JSON.stringify({
+                email,
+            }),
+        });
+        await fetch("/api/analytics", {
+            method: "POST",
+            body: JSON.stringify({
+                event: "subscribe",
+                data: email,
+            }),
+        });
+        setEmail("");
+        toast({
+            title: "Thanks for subscribing!",
+            description:
+                "We'll update you when we add more subjects and papers.",
+        });
+    }
+
+    function validateEmail() {
+        const regex = /\S+@\S+\.\S+/;
+        setEmailValidated(regex.test(email));
+    }
 
     if (isLoading)
         return (
@@ -61,9 +94,39 @@ export default function PastPapersPage() {
                     <AlertDescription className="text-gray-900 tracking-wide">
                         We only have past papers for three subjects:
                         Mathematics, Chemistry, and Physics, up from 2022 to
-                        May/June 2023. We&apos;re working on adding more
-                        subjects and more papers, so stay tuned!
+                        May/June 2023. We&apos;re working hard to add more
+                        subjects and more papers! Interested? Enter you email
+                        address below and we will notify you when we release new
+                        subjects and papers.
                     </AlertDescription>
+                    <div className="my-4">
+                        <p className="text-sm mb-2">Email address:</p>
+                        <div className="flex">
+                            <Input
+                                type="email"
+                                value={email}
+                                className={`w-96 h-8 mr-4 ${
+                                    email && !emailValidated && "border-red-500"
+                                }`}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    validateEmail();
+                                }}
+                            />
+                            <Button
+                                className="h-8 font-normal text-xs bg-blue-800 hover:bg-blue-900 hover:shadow-md"
+                                disabled={!emailValidated}
+                                onClick={() => subscribe()}
+                            >
+                                Subscribe
+                            </Button>
+                        </div>
+                        {email && !emailValidated && (
+                            <p className="my-2 text-xs text-red-500">
+                                Enter a valid email address.
+                            </p>
+                        )}
+                    </div>
                 </Alert>
             </div>
             <DataTable columns={columns} data={pastPapers} />
