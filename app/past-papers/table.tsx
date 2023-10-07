@@ -133,7 +133,7 @@ export const columns: ColumnDef<PastPaper>[] = [
                         <Button
                             size="sm"
                             variant="secondary"
-                            className="h-auto text-xs py-1 mr-2 hover:bg-blue-600 hover:text-white hover:shadow-md"
+                            className="h-auto text-xs py-1 mr-2 hover:bg-blue-800 hover:text-white hover:shadow-md"
                             onClick={() =>
                                 postAnalyticsDownloadEvent(row.original.url)
                             }
@@ -150,7 +150,7 @@ export const columns: ColumnDef<PastPaper>[] = [
                             <Button
                                 size="sm"
                                 variant="secondary"
-                                className="h-auto text-xs py-1 mr-2 hover:bg-blue-600 hover:text-white hover:shadow-md"
+                                className="h-auto text-xs py-1 mr-2 hover:bg-blue-800 hover:text-white hover:shadow-md"
                                 onClick={() =>
                                     postAnalyticsDownloadEvent(
                                         row.original.markingSchemeUrl

@@ -17,7 +17,7 @@ export default function PastPapersLayout({
             </Alert> */}
             <div className="mx-auto max-w-4xl pt-8 pb-96 px-8">
                 <h1 className="text-xl font-semibold text-blue-950">
-                    CAIE AS and A Level Past Papers
+                    CIE AS and A Level Past Papers
                 </h1>
                 {children}
             </div>

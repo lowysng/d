@@ -94,10 +94,12 @@ export default function PastPapersPage() {
                     <AlertDescription className="text-gray-900 tracking-wide">
                         We only have past papers for three subjects:
                         Mathematics, Chemistry, and Physics, up from 2022 to
-                        May/June 2023. We&apos;re working hard to add more
-                        subjects and more papers! Interested? Enter you email
-                        address below and we will notify you when we release new
-                        subjects and papers.
+                        May/June 2023.
+                    </AlertDescription>
+                    <AlertDescription className="text-gray-900 tracking-wide">
+                        We&apos;re working hard to add more subjects and more
+                        papers! Interested? Enter you email address below and we
+                        will notify you when we release new subjects and papers.
                     </AlertDescription>
                     <div className="my-4">
                         <p className="text-sm mb-2">Email address:</p>
@@ -118,7 +120,7 @@ export default function PastPapersPage() {
                                 disabled={!emailValidated}
                                 onClick={() => subscribe()}
                             >
-                                Subscribe
+                                Notify me
                             </Button>
                         </div>
                         {email && !emailValidated && (
