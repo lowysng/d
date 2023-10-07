@@ -9,6 +9,7 @@ import {
     getFacetedRowModel,
     getFacetedUniqueValues,
     getFilteredRowModel,
+    getPaginationRowModel,
     useReactTable,
 } from "@tanstack/react-table";
 
@@ -22,6 +23,7 @@ import {
 } from "@/components/ui/table";
 import React from "react";
 import { DataTableToolbar } from "./data-table-toolbar";
+import { DataTablePagination } from "./data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
@@ -43,6 +45,7 @@ export function DataTable<TData, TValue>({
         getFilteredRowModel: getFilteredRowModel(),
         getFacetedRowModel: getFacetedRowModel(),
         getFacetedUniqueValues: getFacetedUniqueValues(),
+        getPaginationRowModel: getPaginationRowModel(),
         state: {
             columnFilters,
         },
@@ -59,7 +62,7 @@ export function DataTable<TData, TValue>({
     return (
         <div className="w-full">
             <DataTableToolbar table={table} />
-            <div className="rounded-md border bg-white shadow-sm">
+            <div className="rounded-md border bg-white shadow-sm my-4">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
@@ -118,6 +121,7 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
+            <DataTablePagination table={table} />
         </div>
     );
 }
