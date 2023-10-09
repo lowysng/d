@@ -15,6 +15,15 @@ function postAnalyticsDownloadEvent(file: string) {
     });
 }
 
+function pushNotification(file: string) {
+    fetch("/api/push-notification", {
+        method: "POST",
+        body: JSON.stringify({
+            message: `A user has downloaded the file: ${file}`,
+        }),
+    });
+}
+
 export const subjects = [
     {
         value: "Mathematics",
@@ -134,9 +143,10 @@ export const columns: ColumnDef<PastPaper>[] = [
                             size="sm"
                             variant="secondary"
                             className="h-auto text-xs py-1 mr-2 hover:bg-blue-800 hover:text-white hover:shadow-md"
-                            onClick={() =>
-                                postAnalyticsDownloadEvent(row.original.url)
-                            }
+                            onClick={() => {
+                                postAnalyticsDownloadEvent(row.original.url);
+                                pushNotification(row.original.url);
+                            }}
                         >
                             Question paper{" "}
                             <DownloadIcon className="h-3 w-3 ml-1" />
@@ -151,11 +161,14 @@ export const columns: ColumnDef<PastPaper>[] = [
                                 size="sm"
                                 variant="secondary"
                                 className="h-auto text-xs py-1 mr-2 hover:bg-blue-800 hover:text-white hover:shadow-md"
-                                onClick={() =>
+                                onClick={() => {
                                     postAnalyticsDownloadEvent(
                                         row.original.markingSchemeUrl
-                                    )
-                                }
+                                    );
+                                    pushNotification(
+                                        row.original.markingSchemeUrl
+                                    );
+                                }}
                             >
                                 Marking scheme{" "}
                                 <DownloadIcon className="h-3 w-3 ml-1" />
