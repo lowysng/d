@@ -57,6 +57,14 @@ export default function PastPapersPage() {
                 data: email,
             }),
         });
+
+        await fetch("/api/push-notification", {
+            method: "POST",
+            body: JSON.stringify({
+                message: `A user has subscribed: ${email}`,
+            }),
+        });
+
         setEmail("");
         toast({
             title: "Thanks for subscribing!",
